@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2017 a las 18:25:02
+-- Tiempo de generación: 16-11-2017 a las 23:16:45
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 5.6.31
 
@@ -38,6 +38,14 @@ CREATE TABLE `clientes` (
   `email` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `estado_id`, `nombre`, `apellido`, `dni`, `telefono`, `email`) VALUES
+(1, 1, 'Marcela', 'Perez', 32569012, 42655812, 'perez_marcela0208@gmail.com'),
+(5, 1, 'Olga', 'Castillo', 2050560, 42005400, 'olga_castillo_pichi@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +71,14 @@ CREATE TABLE `estados` (
   `nombre` varchar(70) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `estados`
+--
+
+INSERT INTO `estados` (`id`, `nombre`) VALUES
+(1, 'alta'),
+(2, 'baja');
+
 -- --------------------------------------------------------
 
 --
@@ -76,6 +92,13 @@ CREATE TABLE `formulas` (
   `descripcion` varchar(300) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `formulas`
+--
+
+INSERT INTO `formulas` (`id`, `estado_id`, `nombre`, `descripcion`) VALUES
+(1, 1, 'pan arabe', 'sarasa');
+
 -- --------------------------------------------------------
 
 --
@@ -87,6 +110,15 @@ CREATE TABLE `formulas_insumos` (
   `formula_id` int(11) NOT NULL,
   `insumo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `formulas_insumos`
+--
+
+INSERT INTO `formulas_insumos` (`id`, `formula_id`, `insumo_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -100,6 +132,15 @@ CREATE TABLE `insumos` (
   `nombre` varchar(60) COLLATE utf8_bin NOT NULL,
   `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `insumos`
+--
+
+INSERT INTO `insumos` (`id`, `estado_id`, `nombre`, `stock`) VALUES
+(1, 1, 'harina 0000', 500),
+(2, 1, 'sal', 200),
+(3, 1, 'manteca', 100);
 
 -- --------------------------------------------------------
 
@@ -128,6 +169,13 @@ CREATE TABLE `productos` (
   `nombre` varchar(90) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `estado_id`, `nombre`) VALUES
+(1, 1, 'pan arabe');
+
 -- --------------------------------------------------------
 
 --
@@ -139,6 +187,17 @@ CREATE TABLE `roles` (
   `estado_id` int(11) NOT NULL,
   `nombre` varchar(70) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `estado_id`, `nombre`) VALUES
+(1, 1, 'administracion'),
+(2, 1, 'empleado_produccion'),
+(3, 1, 'encargado_produccion'),
+(4, 1, 'gerente_produccion'),
+(5, 1, 'ventas');
 
 -- --------------------------------------------------------
 
@@ -168,6 +227,13 @@ CREATE TABLE `usuarios` (
   `telefono` int(11) NOT NULL,
   `email` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `estado_id`, `username`, `password`, `nombre`, `apellido`, `dni`, `telefono`, `email`) VALUES
+(1, 1, 'steven13', '$2a$10$8b94os.SdhOz2wAfc3ZTy.6oxg2oeDOOaJ31ECKvufBo2Fwi7pj6y', 'Esteban', 'Slobodianik', 37542834, 42630526, 'steven.arranzkun@gmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -247,7 +313,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `cpedidos`
 --
@@ -257,22 +323,22 @@ ALTER TABLE `cpedidos`
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `formulas`
 --
 ALTER TABLE `formulas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `formulas_insumos`
 --
 ALTER TABLE `formulas_insumos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `insumos`
 --
 ALTER TABLE `insumos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
@@ -282,12 +348,12 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `tipos`
 --
@@ -297,7 +363,7 @@ ALTER TABLE `tipos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
