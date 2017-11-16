@@ -42,7 +42,7 @@ abstract class BaseAuthenticate {
 			'username' => 'username',
 			'password' => 'password'
 		),
-		'userModel' => 'User',
+		'userModel' => 'Usuario',
 		'scope' => array(),
 		'recursive' => 0,
 		'contain' => null,
